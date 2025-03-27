@@ -1,0 +1,30 @@
+name: Deploy Vite Vanilla to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Déploiement à chaque push sur main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Installer les dépendances et builder
+        run: |
+          npm install
+          npm run build
+
+      - name: Déployer sur GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # Le build est dans "dist/"
