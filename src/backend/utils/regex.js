@@ -1,5 +1,9 @@
-function isValidString(input) {
-    // Vérifie que la chaîne contient uniquement des lettres et des espaces
-    const regex = /^[A-Za-z ]+$/;
-    return regex.test(input);
+export default function isValidString(input) {
+    const regex = /^[A-Za-z\s]+$/;
+    
+    if (regex.test(input)) {
+        return input.trim(); // Retourne le mot proprement (sans espaces inutiles)
+    } else {
+        return "Erreur : caractères invalides détectés !";
+    }
 }
