@@ -1,4 +1,5 @@
 import isValidString from '../../utils/regex.js';
+import fetchWeatherApi from '../../api/fetchWeatherApi.js';
 export default function controllerInputUser() {
     try {
         const SELECT_INPUT_CITY = document.querySelector('#select-city');
@@ -9,6 +10,7 @@ export default function controllerInputUser() {
             event.preventDefault(); // Empêche la soumission du formulaire
 
             const cityValue = isValidString(SELECT_INPUT_CITY.value); // Récupérer la valeur de l'input et la retirer tous les caractères spéciaux indésirables
+            fetchWeatherApi(cityValue); // Appelle la fonction fetchWeatherApi avec la valeur de la ville
             console.log("Valeur de la ville :", cityValue); // Affiche la valeur dans la console
 
             // Tu peux ajouter d'autres actions à effectuer avec la valeur de la ville ici
