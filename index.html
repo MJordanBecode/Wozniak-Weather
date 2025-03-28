@@ -4,15 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer type="module" src="src/backend/main.js"></script>
+    <script  type="module" defer src="src/backend/main.js"></script>
+    <link rel="stylesheet" href="./src/frontend/css/style.css">
     <title>Weather App</title>
   </head>
   <body>
     <head></head>
     <main>
-      <label for="text">Select one City</label>
-      <input type="text" name="text" id="select-city" aria-keyshortcuts="enter">
-      <button class="submit-city">Submit</button>
+      <section>
+        <label for="text">Select one City</label>
+        <input type="text" name="text" id="select-city" aria-keyshortcuts="enter">
+        <input type="text" name="text" id="select-country" aria-keyshortcuts="enter">
+        <button class="submit-city">Submit</button>
+      </section>
     </main>
     <footer></footer>
   </body>
