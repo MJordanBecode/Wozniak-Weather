@@ -236,6 +236,8 @@
   
   /* Featured day container */
   .featured-day-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
   }
   
@@ -276,15 +278,214 @@
     position: relative;
     z-index: 1;
   }
-  
-  .weather-details {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    position: relative;
-    z-index: 1;
+
+  .changeElementDay{
+    width: 5%;
   }
   
+  .hourly-entry{
+    border: solid 0.5px black;
+    border-radius: 15px;
+    padding: 4%;
+  }
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+  
+
+/* Styles pour les prévisions horaires */
+.hourly-forecast-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.hourly-entries-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 576px) {
+  .hourly-entries-container {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .hourly-entries-container {
+      grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.hourly-entry {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.hourly-entry:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hourly-entry-header {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hourly-time-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.hourly-time {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.hourly-date {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.hourly-temp {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.hourly-entry-content {
+  padding: 20px;
+}
+
+.hourly-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.hourly-icon {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+}
+
+.hourly-condition {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 5px;
+  text-transform: capitalize;
+}
+
+.hourly-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.hourly-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hourly-detail-item:last-child {
+  border-bottom: none;
+}
+
+.hourly-detail-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.hourly-detail-value {
+  font-weight: 600;
+}
+
+.back-to-main {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin: 0 auto;
+  display: block;
+  font-size: 1rem;
+}
+
+.back-to-main:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation pour les entrées horaires */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Modification du style de la flèche */
+.changeElementDay {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.changeElementDay:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Ajustement pour le conteneur weather-details */
+
+
+@media (min-width: 768px) {
+  .weather-details {
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+}
+
   @media (min-width: 768px) {
     .weather-details {
       flex-direction: row;

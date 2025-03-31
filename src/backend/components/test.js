@@ -1,5 +1,6 @@
-import fetchWeatherApi from "./api/fetchWeatherApi.js";
+import fetchWeatherApi from "../api/fetchWeatherApi.js";
 import processWeatherData from "./createCard.js";
+import otherElementByHours from "./elementByHour.js";
 
 export default async function fetchWeatherData() {
   const CITY_INPUT = document.querySelector('#select-city');
@@ -19,17 +20,21 @@ export default async function fetchWeatherData() {
         existingCard.remove();
       }
 
-      // Pass both city and country
+      // Fetch data and process it
       const data = await fetchWeatherApi(cityName, countryCode);
+      // Pass data to otherElementByHours
+      await otherElementByHours(data);
+      
       await processWeatherData(data);
+
+
+      console.log("voici les dataTest : ", data);
       
       // Clear inputs
       CITY_INPUT.value = ''; 
       COUNTRY_INPUT.value = '';
     } catch (error) {
       console.error("Erreur lors de la récupération des données météo :", error);
-      // Optional: Add user-friendly error handling
-      // For example, display an error message to the user
     }
   }
 

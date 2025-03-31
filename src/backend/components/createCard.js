@@ -1,5 +1,5 @@
-import createElement from "./utils/createElement.js";
-import customRound from "./utils/rounding.js";
+import createElement from "../utils/createElement.js";
+import customRound from "../utils/rounding.js";
 
 export default async function processWeatherData(data) {
     const SELECT_MAIN = document.querySelector("main");
@@ -88,7 +88,10 @@ export default async function processWeatherData(data) {
     } else {
         console.error('data.list n\'est pas un tableau');
     }
+    console.log("MON TAAAAAAAAAAAAAAAAB : ", days);
 
+    console.log("day tableau : ", days);
+    console.log("currentDay : ", currentDay);
     const featuredDayContainer = createElement("div");
     featuredDayContainer.classList.add("featured-day-container");
 
@@ -141,10 +144,10 @@ export default async function processWeatherData(data) {
 
         if (index === 0) {
             dayDiv.classList.add("day", "featured-day");
-
             const dayTitle = createElement("h3");
             dayTitle.textContent = "Aujourd'hui";
             dayDiv.appendChild(dayTitle);
+
 
             const weatherDetails = createElement("div");
             weatherDetails.classList.add("weather-details");
@@ -198,7 +201,13 @@ export default async function processWeatherData(data) {
             tempMinMaxInfo.innerHTML = `<span class="stat-label">Min/Max</span><span class="stat-value">${tempMin}°C / ${tempMax}°C</span>`;
             statsContainer.appendChild(tempMinMaxInfo);
 
-            weatherDetails.appendChild(statsContainer);
+
+            const dayArrow = createElement("img");
+            dayArrow.src = '../../src/public/icons/arrow-right.svg';
+            dayArrow.classList.add('changeElementDay');
+
+            weatherDetails.appendChild(statsContainer); // ICI
+            weatherDetails.appendChild(dayArrow);
             dayDiv.appendChild(weatherDetails);
 
             featuredDayContainer.appendChild(dayDiv);
@@ -222,6 +231,7 @@ export default async function processWeatherData(data) {
                 <p>Humidité : ${avgHumidity}%</p>
                 <p>Pression : ${avgPressure} hPa</p>
                 <p>Vent : ${avgWindSpeed} m/s</p>
+                <div class="voirPlus"><p class="bouttonVoirplus">voir plus</p></div>
             `;
 
             daysContainer.appendChild(dayDiv);
@@ -236,4 +246,9 @@ export default async function processWeatherData(data) {
     weatherCard.appendChild(forecastTitle);
     weatherCard.appendChild(daysContainer);
     SELECT_MAIN.appendChild(weatherCard);
+
+    // Emit a custom event to signal that the cards are created
+    const event = new Event('cardsCreated');
+    document.dispatchEvent(event);
+    
 }
