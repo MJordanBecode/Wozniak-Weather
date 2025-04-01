@@ -1,6 +1,7 @@
 import fetchWeatherApi from "../api/fetchWeatherApi.js";
 import processWeatherData from "./createCard.js";
 import otherElementByHours from "./elementByHour.js";
+import displayGraphic from "../utils/chart.js";
 
 export default async function fetchWeatherData() {
   const CITY_INPUT = document.querySelector('#select-city');
@@ -24,11 +25,12 @@ export default async function fetchWeatherData() {
       const data = await fetchWeatherApi(cityName, countryCode);
       // Pass data to otherElementByHours
       await otherElementByHours(data);
+      await displayGraphic(data);
       
       await processWeatherData(data);
 
 
-      console.log("voici les dataTest : ", data);
+      console.log(displayGraphic)
       
       // Clear inputs
       CITY_INPUT.value = ''; 

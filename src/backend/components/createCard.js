@@ -1,5 +1,6 @@
 import createElement from "../utils/createElement.js";
 import customRound from "../utils/rounding.js";
+import { setLocalStorage, getLocalStorage } from "../utils/localStorage.js";
 
 export default async function processWeatherData(data) {
     const SELECT_MAIN = document.querySelector("main");
@@ -13,10 +14,10 @@ export default async function processWeatherData(data) {
     dateTimeContainer.classList.add("date-time-container");
 
     const currentDateTime = new Date();
-    const options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit'
@@ -40,7 +41,7 @@ export default async function processWeatherData(data) {
 
     const country = createElement("p");
     country.textContent = data.city.country;
-    console.log("ma country : ",country)
+    console.log("ma country : ", country)
     country.classList.add("country");
     mainInfo.appendChild(country);
 
@@ -88,7 +89,6 @@ export default async function processWeatherData(data) {
     } else {
         console.error('data.list n\'est pas un tableau');
     }
-    console.log("MON TAAAAAAAAAAAAAAAAB : ", days);
 
     console.log("day tableau : ", days);
     console.log("currentDay : ", currentDay);
@@ -250,5 +250,10 @@ export default async function processWeatherData(data) {
     // Emit a custom event to signal that the cards are created
     const event = new Event('cardsCreated');
     document.dispatchEvent(event);
-    
+
+
+const test = document.querySelector('.featured-day');
+console.log("TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST : ", test);
+
+
 }
