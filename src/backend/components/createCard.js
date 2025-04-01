@@ -1,6 +1,5 @@
 import createElement from "../utils/createElement.js";
 import customRound from "../utils/rounding.js";
-import { setLocalStorage, getLocalStorage } from "../utils/localStorage.js";
 
 export default async function processWeatherData(data) {
     const SELECT_MAIN = document.querySelector("main");
@@ -14,10 +13,10 @@ export default async function processWeatherData(data) {
     dateTimeContainer.classList.add("date-time-container");
 
     const currentDateTime = new Date();
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit'
@@ -41,7 +40,7 @@ export default async function processWeatherData(data) {
 
     const country = createElement("p");
     country.textContent = data.city.country;
-    console.log("ma country : ", country)
+    console.log("ma country : ",country)
     country.classList.add("country");
     mainInfo.appendChild(country);
 
@@ -89,6 +88,7 @@ export default async function processWeatherData(data) {
     } else {
         console.error('data.list n\'est pas un tableau');
     }
+    console.log("MON TAAAAAAAAAAAAAAAAB : ", days);
 
     console.log("day tableau : ", days);
     console.log("currentDay : ", currentDay);
@@ -114,21 +114,21 @@ export default async function processWeatherData(data) {
             pressureSum += entry.pressure;
             windSpeedSum += entry.windSpeed;
             if (entry.icon.includes("n")) {
-                iconSrc = "../../src/public/icons/cloudy-day-1.svg";
+                iconSrc = "src/public/icons/cloudy-day-1.svg"; 
             } else if (entry.condition.includes("cloud")) {
-                iconSrc = "../../src/public/icons/cloudy-day-1.svg";
+                iconSrc = "src/public/icons/cloudy-day-1.svg";
             } else if (entry.condition.includes("rain")) {
-                iconSrc = "../../src/public/icons/rainy-6.svg";
+                iconSrc = "src/public/icons/rainy-6.svg";
             } else if (entry.condition.includes("snow")) {
-                iconSrc = "../../src/public/icons/snowy-3.svg";
+                iconSrc = "src/public/icons/snowy-3.svg";
             } else if (entry.condition.includes("thunder")) {
-                iconSrc = "../../src/public/icons/thunder.svg";
+                iconSrc = "src/public/icons/thunder.svg";
             }
         });
 
         let avgTemp = customRound(tempSum / dayCount);
         let avgHumidity = customRound(humiditySum / dayCount);
-        let avgPressure = customRound(pressureSum / dayCount);
+        let avgPressure = customRound(pressureSum / dayCount); 
         let avgWindSpeed = customRound(windSpeedSum / dayCount);
 
         // Arrondissement des températures min et max
@@ -203,7 +203,7 @@ export default async function processWeatherData(data) {
 
 
             const dayArrow = createElement("img");
-            dayArrow.src = '../../src/public/icons/arrow-right.svg';
+            dayArrow.src = 'src/public/icons/arrow-right.svg';
             dayArrow.classList.add('changeElementDay');
 
             weatherDetails.appendChild(statsContainer); // ICI
@@ -250,10 +250,5 @@ export default async function processWeatherData(data) {
     // Emit a custom event to signal that the cards are created
     const event = new Event('cardsCreated');
     document.dispatchEvent(event);
-
-
-const test = document.querySelector('.featured-day');
-console.log("TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST : ", test);
-
-
+    
 }
