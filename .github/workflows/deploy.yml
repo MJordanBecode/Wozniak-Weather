@@ -29,7 +29,7 @@ jobs:
           }' > vite.config.js
       # Before the build
       - name: Set up environment variables
-      
+
         run: echo "VITE_API=${{ secrets.VITE_API }}" >> $GITHUB_ENV
       - name: Build project
         run: npm run build
@@ -56,5 +56,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          with:
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           publish_dir: ./dist
