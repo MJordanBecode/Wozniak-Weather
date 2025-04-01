@@ -17,18 +17,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # ajustez la version si nécessaire
-
-      - name: Set up environment variables
-        run: echo "VITE_API=${{ secrets.VITE_API }}" >> $GITHUB_ENV
-
-      - name: Configure Vite
-        run: |
-          echo "export default { base: '/${{ github.event.repository.name }}/' }" > vite.config.js
+          node-version: '20' # adjust version according to your project
 
       - name: Install dependencies
-        run: npm install
-
+        run: npm install 
+      
+      - name: Configure vite
+        run: |
+          echo 'export default {
+            base: "/${{ github.event.repository.name }}/"
+          }' > vite.config.js
+      # Before the build
+      - name: Set up environment variables
+      
+        run: echo "VITE_API=${{ secrets.VITE_API }}" >> $GITHUB_ENV
       - name: Build project
         run: npm run build
 
