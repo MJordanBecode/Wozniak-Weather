@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -34,7 +34,7 @@ jobs:
           }' > vite.config.js
       # Before the build
       - name: Set up environment variables
-        run: echo "VITE_API=${{ secrets.VITE_API }}" >> $GITHUB_ENV
+        run: echo "VITE_API=${{ secrets.VITE_API_KEY }}" >> $GITHUB_ENV
       
       - name: Build project
         run: npm run build
@@ -61,5 +61,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.GH_PAT }}
           publish_dir: ./dist
