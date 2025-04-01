@@ -63,3 +63,6 @@ jobs:
         with:
           personal_token: ${{ secrets.GH_PAT }}
           publish_dir: ./dist
+          force_orphan: true  # Cette ligne force la création d'une nouvelle branche propre
+          #j'espère que ça fonctionne
+          
